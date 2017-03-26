@@ -1,6 +1,8 @@
 var expect = require('expect');
 var df = require('deep-freeze-strict');
 var reducers = require('reducers');
+var uuid = require('node-uuid');
+var moment = require('moment');
 
 describe('Reducers', () => {
   describe('searchTextReducer', () => {
@@ -22,6 +24,44 @@ describe('Reducers', () => {
       var res = reducers.showCompletedReducer(df(false), df(action));
 
       expect(res).toBe(true);
+    });
+  });
+  describe('todosReducer', () => {
+    it('should add new todo', () => {
+      var action = {
+        type: 'ADD_TODO',
+        text: 'Walk the dog'
+      };
+      var res = reducers.todosReducer(df([]), df(action));
+
+      expect(res.length).toEqual(1);
+      expect(res[0].text).toEqual(action.text);
+    });
+    it('should toggle todo', () => {
+      var todos = [
+        {
+          id: '120',
+          text: 'Test features',
+          completed: false,
+          createdAt: 0,
+          completedAt: undefined
+        },{
+          id: '121',
+          text: 'More Test features',
+          completed: false,
+          createdAt: 0,
+          completedAt: undefined
+        },
+
+      ]
+      var action = {
+        type: 'TOGGLE_TODO',
+        id: '120'
+      };
+      var res = reducers.todosReducer(df(todos), df(action));
+
+      expect(res[0].completed).toEqual(true);
+      expect(res[0].completedAt).toEqual(moment().unix());
     });
   });
 });
