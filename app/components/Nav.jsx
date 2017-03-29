@@ -8,8 +8,13 @@ var Nav = React.createClass({
       <div className="top-bar">
         <div className="top-bar-left">
           <ul className="menu">
-            <li className="menu-text">Final Countdown</li>
-          
+            <li className="menu-text">Another Todo app</li>
+            <li>
+              <IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Login</IndexLink>
+            </li>
+            <li>
+              <Link to="/todos" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Todos</Link>
+            </li>
           </ul>
         </div>
         <div className="top-bar-right">

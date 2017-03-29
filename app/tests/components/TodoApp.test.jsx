@@ -6,7 +6,7 @@ var $ = require('jQuery');
 var TestUtils = require('react-addons-test-utils');
 var moment = require('moment');
 
-var TodoApp = require('TodoApp');
+import {TodoApp} from 'TodoApp';
 var configureStore = require('configureStore');
 import TodoList from 'TodoList';
 
